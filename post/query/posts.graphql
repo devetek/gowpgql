@@ -1,0 +1,52 @@
+query PostsQuery(
+  $first: Int
+  $last: Int
+  $before: String
+  $after: String
+  $where: RootQueryToPostConnectionWhereArgs
+) {
+  posts(
+    first: $first
+    last: $last
+    where: $where
+    after: $after
+    before: $before
+  ) {
+    nodes {
+      id
+      title
+      excerpt
+      uri
+      slug
+      link
+      date
+      categories {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+      author {
+        node {
+          id
+          slug
+          name
+          firstName
+          lastName
+          avatar {
+            url
+            width
+            height
+          }
+        }
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          caption
+        }
+      }
+    }
+  }
+}
