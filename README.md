@@ -18,4 +18,4 @@ make run-example-with-external
 
 ## Todo
 
-[ ] Migrate wordpress common data to completing golang wordpress interface
+- [ ] Migrate wordpress common data to completing golang wordpress interface
