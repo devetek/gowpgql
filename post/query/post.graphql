@@ -1,0 +1,39 @@
+query PostQuery($id: ID!, $idType: PostIdType, $asPreview: Boolean) {
+  post(id: $id, idType: $idType, asPreview: $asPreview) {
+    id
+    title
+    excerpt
+    content
+    uri
+    slug
+    link
+    date
+    categories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+    author {
+      node {
+        id
+        slug
+        name
+        firstName
+        lastName
+        avatar {
+          url
+          width
+          height
+        }
+      }
+    }
+    featuredImage {
+      node {
+        mediaItemUrl
+        caption
+      }
+    }
+  }
+}

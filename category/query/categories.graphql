@@ -1,0 +1,29 @@
+query getCategories(
+  $first: Int
+  $last: Int
+  $before: String
+  $after: String
+  $where: RootQueryToCategoryConnectionWhereArgs
+) {
+  categories(
+    first: $first
+    last: $last
+    before: $before
+    after: $after
+    where: $where
+  ) {
+    nodes {
+      id
+      name
+      slug
+      link
+      description
+      posts {
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+        }
+      }
+    }
+  }
+}

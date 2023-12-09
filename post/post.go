@@ -9,52 +9,39 @@ import (
 	"github.com/devetek/gowpgql/wptype"
 )
 
-type Posts struct {
+type Post struct {
 	Data struct {
-		Posts struct {
-			Nodes []wptype.Node `json:"nodes"`
-		} `json:"posts"`
+		Post wptype.Node `json:"post"`
 	} `json:"data"`
 	Extensions wptype.Extensions `json:"extensions"`
 }
 
-func GetPosts(client *gqlclient.Client, model *gqlmodel.Graphql, first int, last int, before string, after string, where map[string]interface{}) *Posts {
+func GetPost(client *gqlclient.Client, model *gqlmodel.Graphql, id string, idType string, isPreview bool) *Post {
 	ctx := context.Background()
 	// response
-	var posts = &Posts{}
+	var post = &Post{}
 
-	getpost, err := model.Query("post/query/posts.graphql")
+	getpost, err := model.Query("post/query/post.graphql")
 	if err != nil {
 		log.Println(err)
 	}
 
 	reqGql := gqlclient.NewRequest(getpost)
 
+	// if variables not set
+	if id == "" || idType == "" {
+		return post
+	}
+
 	// set variables
-	if first != 0 {
-		reqGql.Var("first", first)
+	reqGql.Var("id", id)
+	reqGql.Var("idType", idType)
+	reqGql.Var("isPreview", isPreview)
+
+	// run and capture the response
+	if err := client.Run(ctx, reqGql, &post); err != nil {
+		log.Println("[gowpgql/post/post.go] in line 45, error: ", err)
 	}
 
-	if last != 0 {
-		reqGql.Var("last", last)
-	}
-
-	if before != "" {
-		reqGql.Var("before", before)
-	}
-
-	if after != "" {
-		reqGql.Var("after", after)
-	}
-
-	if where != nil {
-		reqGql.Var("where", where)
-	}
-
-	// run it and capture the response
-	if err := client.Run(ctx, reqGql, &posts); err != nil {
-		log.Println(err)
-	}
-
-	return posts
+	return post
 }

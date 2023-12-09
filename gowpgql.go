@@ -3,6 +3,7 @@ package gowpgql
 import (
 	"github.com/devetek/go-core/gqlclient"
 	"github.com/devetek/go-core/gqlmodel"
+	"github.com/devetek/gowpgql/category"
 	"github.com/devetek/gowpgql/post"
 )
 
@@ -11,6 +12,10 @@ type GoWPGql interface {
 	Client() *gqlclient.Client
 	// get list of posts
 	Posts(first int, last int, before string, after string, where map[string]interface{}) *post.Posts
+	// get post detail
+	Post(id string, idType string, isPreview bool) *post.Post
+	// get category list
+	GetCategories(first int, last int, before string, after string, where map[string]interface{}) *category.Categories
 	// expose external model
 	ExtQuery() *gqlmodel.Graphql
 }

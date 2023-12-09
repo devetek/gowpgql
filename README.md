@@ -1,6 +1,6 @@
 ## Description
 
-Golang interface to communicate with wordpress graphql by ['wpgraphql'](https://www.wpgraphql.com/). By using this you can easily to get, update or delete data from golang to wordpress engine.
+Golang interface to communicate with wordpress graphql from [WPGraphQL](https://www.wpgraphql.com/). Use this to easily access wordpress data from golang. Integrate with repository ['Wordpress Playground'](https://github.com/devetek/wpgraphql-playground) for the wordpress engine.
 
 ### Usage
 
@@ -32,7 +32,7 @@ func main() {
 1. Use common available interface from this package
 
 ```sh
-make run-example-getposts
+make run-example-all-list
 ```
 
 1. Define your own model, if it not supported to your wordpress data structure
