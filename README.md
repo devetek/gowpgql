@@ -1,6 +1,6 @@
 ## Description
 
-Golang interface to communicate with wordpress graphql from [WPGraphQL](https://www.wpgraphql.com/). Use this to easily access wordpress data from golang. Integrate with repository ['Wordpress Playground'](https://github.com/devetek/wpgraphql-playground) for the wordpress engine.
+Golang interface to communicate with wordpress graphql from [WPGraphQL](https://www.wpgraphql.com/). Easily access wordpress data from golang. Integrate with repository [Wordpress Playground](https://github.com/devetek/wpgraphql-playground) to play around Wordpress.
 
 ### Usage
 
