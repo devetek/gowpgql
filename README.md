@@ -1,6 +1,10 @@
 ## Description
 
-Golang interface to communicate with wordpress graphql from [WPGraphQL](https://www.wpgraphql.com/). Easily access wordpress data from golang. Integrate with repository [Wordpress Playground](https://github.com/devetek/wpgraphql-playground) to play around Wordpress.
+GoWPGQL is an interface to communicate with WordPress through GraphQL by [WPGraphQL](https://www.wpgraphql.com/). Integrate with repository [Wordpress Playground](https://github.com/devetek/wpgraphql-playground) to play around with Wordpress.
+
+### Prerequisite
+
+Wordpress engine with WPGraphQL enabled, use [Wordpress Playground](https://github.com/devetek/wpgraphql-playground) to test GoWPGQL examples.
 
 ### Usage
 
@@ -16,9 +20,9 @@ import (
 )
 
 func main() {
-    var gqlUrl = "https://graphql.terpusat.com/"
+    var wpGQLURL = "https://graphql.terpusat.com/"
 
-	gql := gowpgql.New(gqlUrl)
+	gql := gowpgql.New(wpGQLURL)
 
     // get post without variables
 	posts := gql.Posts(1, 0, "", "", nil)
@@ -29,13 +33,13 @@ func main() {
 
 ### Examples
 
-1. Use common available interface from this package
+1. Use common available interface from GoWPGQL
 
 ```sh
 make run-example-all-list
 ```
 
-1. Define your own model, if it not supported to your wordpress data structure
+1. Define your custom model, if it not supported to your wordpress data structure
 
 ```sh
 make run-example-with-external
