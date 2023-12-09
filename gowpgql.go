@@ -7,21 +7,42 @@ import (
 	"github.com/devetek/gowpgql/post"
 )
 
-// available interface
-type GoWPGql interface {
+// public interface
+type GoWPGQL interface {
 	Client() *gqlclient.Client
 	// get list of posts
-	Posts(first int, last int, before string, after string, where map[string]interface{}) *post.Posts
+	GetPosts(
+		first int,
+		last int,
+		before string,
+		after string,
+		where map[string]interface{},
+	) *post.Posts
 	// get post detail
-	Post(id string, idType string, isPreview bool) *post.Post
+	GetPost(id string, idType string, isPreview bool) *post.Post
 	// get category list
-	GetCategories(first int, last int, before string, after string, where map[string]interface{}) *category.Categories
+	GetCategories(
+		first int,
+		last int,
+		before string,
+		after string,
+		where map[string]interface{},
+	) *category.Categories
+	GetCategory(
+		id string,
+		idType string,
+		postFirst int,
+		postLast int,
+		postBefore string,
+		postAfter string,
+		postWhere map[string]interface{},
+	) *category.Category
 	// expose external model
 	ExtQuery() *gqlmodel.Graphql
 }
 
-func New(endpoint string, options ...Option) GoWPGql {
-	m := goWPgql{
+func New(endpoint string, options ...Option) GoWPGQL {
+	m := goWPGQL{
 		client: gqlclient.NewClient(endpoint),
 		model:  gqlmodel.New(mdlPath),
 	}
@@ -34,10 +55,10 @@ func New(endpoint string, options ...Option) GoWPGql {
 }
 
 // return gql client library
-func (gwp *goWPgql) Client() *gqlclient.Client {
+func (gwp *goWPGQL) Client() *gqlclient.Client {
 	return gwp.client
 }
 
-func (gwp *goWPgql) ExtQuery() *gqlmodel.Graphql {
+func (gwp *goWPGQL) ExtQuery() *gqlmodel.Graphql {
 	return gwp.ext
 }

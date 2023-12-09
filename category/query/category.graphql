@@ -1,0 +1,58 @@
+query CategoryQuery(
+  $id: ID!
+  $idType: CategoryIdType
+  $postFirst: Int
+  $postLast: Int
+  $postBefore: String
+  $postAfter: String
+  $postWhere: CategoryToPostConnectionWhereArgs
+) {
+  category(id: $id, idType: $idType) {
+    id
+    name
+    slug
+    description
+    parentId
+    parent {
+      node {
+        id
+        name
+        slug
+      }
+    }
+    posts(
+      first: $postFirst
+      last: $postLast
+      before: $postBefore
+      after: $postAfter
+      where: $postWhere
+    ) {
+      pageInfo {
+        hasPreviousPage
+        hasNextPage
+      }
+      nodes {
+        id
+        title
+        excerpt
+        slug
+        link
+        uri
+      }
+    }
+    children {
+      nodes {
+        id
+        name
+        slug
+        children {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,7 +10,9 @@ import (
 func main() {
 	gql := gowpgql.New(constants.GQL_ENDPOINT)
 
-	post := gql.Post("hello-world", "SLUG", false)
+	post := gql.GetPost("hello-world", "SLUG", false)
+	category := gql.GetCategory("uncategorized", "SLUG", 0, 0, "", "", nil)
 
-	fmt.Println(post.Data.Post.Title)
+	fmt.Println("Post Title: ", post.Data.Post.Title)
+	fmt.Println("Category Name: ", category.Data.Category.Name)
 }

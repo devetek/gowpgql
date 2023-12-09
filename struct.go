@@ -5,7 +5,7 @@ import (
 	"github.com/devetek/go-core/gqlmodel"
 )
 
-type goWPgql struct {
+type goWPGQL struct {
 	client *gqlclient.Client
 	model  *gqlmodel.Graphql
 	ext    *gqlmodel.Graphql

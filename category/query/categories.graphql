@@ -18,12 +18,6 @@ query getCategories(
       slug
       link
       description
-      posts {
-        pageInfo {
-          hasPreviousPage
-          hasNextPage
-        }
-      }
     }
   }
 }

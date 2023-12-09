@@ -23,12 +23,12 @@ func GetCategories(client *gqlclient.Client, model *gqlmodel.Graphql, first int,
 	// response
 	var categories = &Categories{}
 
-	getposts, err := model.Query("category/query/categories.graphql")
+	getcategories, err := model.Query("category/query/categories.graphql")
 	if err != nil {
 		log.Println(err)
 	}
 
-	reqGql := gqlclient.NewRequest(getposts)
+	reqGql := gqlclient.NewRequest(getcategories)
 
 	// set variables
 	if first != 0 {

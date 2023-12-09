@@ -11,14 +11,14 @@ func main() {
 	gql := gowpgql.New(constants.GQL_ENDPOINT)
 
 	// get data lists
-	respPosts := gql.Posts(1, 0, "", "", nil)
+	respPosts := gql.GetPosts(1, 0, "", "", nil)
 	respCategories := gql.GetCategories(1, 0, "", "", nil)
 
 	// print posts
 	posts := respPosts.Data.Posts.Nodes
 	if len(posts) > 0 {
 		for _, post := range posts {
-			fmt.Println(post.Title)
+			fmt.Println("Post Title: ", post.Title)
 		}
 	}
 
@@ -26,7 +26,7 @@ func main() {
 	categories := respCategories.Data.Categories.Nodes
 	if len(categories) > 0 {
 		for _, category := range categories {
-			fmt.Println(category.Name)
+			fmt.Println("Category Name: ", category.Name)
 		}
 	}
 
